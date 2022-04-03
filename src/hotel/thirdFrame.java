@@ -1,6 +1,6 @@
 package hotel;
 
-import HotelV3.Registro;
+import PaqC07.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -61,8 +61,8 @@ public class thirdFrame extends JFrame{
 
     public void mostrarMapa(){
         String mostrar = new String();
-        for (int i = 0; i < 8; ++i) {
-            for (int j = 0; j < 6; ++j) {
+        for (int i = 0; i < H.numPisos; ++i) {
+            for (int j = 0; j < H.numHab; ++j) {
                 if (H.habitaciones[i][j] == null) {
                     mostrar = mostrar + " L ";
                 } else {

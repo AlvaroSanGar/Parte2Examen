@@ -5,11 +5,14 @@ package hotel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 
-import HotelV3.*;
+import PaqC07.*;
+
+import java.io.*;
+import java.nio.file.Path;
+
+import static java.nio.file.Files.exists;
+
 
 public class secondFrame extends JFrame {
     private JPanel Reservas;
@@ -60,7 +63,13 @@ public class secondFrame extends JFrame {
 
     public secondFrame(){
         setContentPane(Reservas);
-        H = new Registro();
+        try {
+            H = Leer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         setTitle("Reservas");
         setSize(900,400);
         setVisible(true);
@@ -206,7 +215,7 @@ public class secondFrame extends JFrame {
         cbBalcon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(cbSuite.isSelected()){
+                if(cbBalcon.isSelected()){
                     JOptionPane.showMessageDialog(null,"Has pulsado 'balcón'.");
                     tfBalcon.setText("1");
                 }
@@ -262,12 +271,28 @@ public class secondFrame extends JFrame {
         secondFrame second = new secondFrame();
     }
 
-    private static void Serializar(Registro r) throws IOException {
+    public static void Serializar(Registro r) throws IOException{
         FileOutputStream fos = new FileOutputStream("reg.dat");
         ObjectOutputStream salida = new ObjectOutputStream(fos);
         salida.writeObject(r);
         fos.close();
         salida.close();
+    }
+
+
+
+    public static Registro Leer() throws IOException, ClassNotFoundException {
+        if ((exists(Path.of("reg.dat")) == true)){
+            FileInputStream fis = new FileInputStream("reg.dat");
+            ObjectInputStream entrada = new ObjectInputStream(fis);
+            Registro salida = (Registro) entrada.readObject();
+            fis.close();
+            entrada.close();
+            return salida;
+        }
+        else{
+            return new Registro();
+        }
     }
 
 
