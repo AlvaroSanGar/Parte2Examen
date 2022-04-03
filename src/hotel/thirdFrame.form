@@ -51,15 +51,7 @@
           <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Anular"/>
-        </properties>
-      </component>
-      <component id="f7f17" class="javax.swing.JButton" binding="btCancelar">
-        <constraints>
-          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Cancelar"/>
+          <text value="Anular reserva"/>
         </properties>
       </component>
       <vspacer id="b046c">
@@ -120,6 +112,22 @@
         <properties>
           <background color="-1114881"/>
           <text value=""/>
+        </properties>
+      </component>
+      <component id="f7f17" class="javax.swing.JButton" binding="btCancelar">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Cancelar"/>
+        </properties>
+      </component>
+      <component id="562d2" class="javax.swing.JButton" binding="btMostrar">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Mostrar reserva"/>
         </properties>
       </component>
     </children>

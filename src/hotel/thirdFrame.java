@@ -5,9 +5,7 @@ import PaqC07.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 public class thirdFrame extends JFrame{
     private JPanel thirdPanel;
@@ -20,6 +18,7 @@ public class thirdFrame extends JFrame{
     private JButton btCancelar;
     private JLabel lbTipo;
     private JTextField tfTipo;
+    private JButton btMostrar;
     protected Registro H;
 
     thirdFrame(){
@@ -41,12 +40,60 @@ public class thirdFrame extends JFrame{
         btAnular.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int [] aux1 ={-1,-1};
+                int cont1 = 0;
                 int tipo = Integer.parseInt(tfTipo.getText());
                 int DNI = Integer.parseInt(tfDNI.getText());
                 int num = Integer.parseInt(tfNum.getText());
+                for (int i = 0;i < num;i++) {
+                    int [] aux2 = H.buscarReserva(DNI,tipo);
+                    if (aux2[0] == aux1[0]) {
+                        JOptionPane.showMessageDialog(null,"No se ha podido anular su reserva, compruebe que los datos son correctos y concuerdan con sus reservas.");
+                        return;
+                    }
+                }
+                if (tipo == 1){
+                    for (int i = 0;i < 5;i++) {
+                        for (int j = 0;j < H.numHab;j++){
+                            if (H.habitaciones[i][j] != null){
+                                cont1++;
+                            }
+                        }
+                    }
+                    if (cont1 < num){
+                        JOptionPane.showMessageDialog(null,"No se ha podido anular su reserva, compruebe que los datos son correctos y concuerdan con sus reservas.");
+                        return;
+                    }
+                }
+                else if (tipo == 2){
+                    for (int i = 5;i < 7;i++) {
+                        for (int j = 0;j < H.numHab;j++){
+                            if (H.habitaciones[i][j] != null){
+                                cont1++;
+                            }
+                        }
+                    }
+                    if (cont1 < num){
+                        JOptionPane.showMessageDialog(null,"No se ha podido anular su reserva, compruebe que los datos son correctos y concuerdan con sus reservas.");
+                        return;
+                    }
+                }
+                else {
+                    for (int i = 7;i < 8;i++) {
+                        for (int j = 0;j < H.numHab;j++){
+                            if (H.habitaciones[i][j] != null){
+                                cont1++;
+                            }
+                        }
+                    }
+                    if (cont1 < num){
+                        JOptionPane.showMessageDialog(null,"No se ha podido anular su reserva, compruebe que los datos son correctos y concuerdan con sus reservas.");
+                        return;
+                    }
+                }
                 H.anulaReserva(DNI,tipo,num);
                 try {
-                    Serializar(H);
+                    secondFrame.Serializar(H);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -57,6 +104,17 @@ public class thirdFrame extends JFrame{
             }
         });
 
+        btMostrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (tfDNI.getText() == ""){
+                    JOptionPane.showMessageDialog(null,"Introduzca su DNI.");
+                    return;
+                }
+                int dni = Integer.parseInt(tfDNI.getText());
+                mostrarMapa2(dni);
+            }
+        });
     }
 
     public static void main(String[] args) {thirdFrame A = new thirdFrame();}
@@ -85,12 +143,32 @@ public class thirdFrame extends JFrame{
         taMapaHotel.setText(mostrar);
     }
 
-    private static void Serializar(Registro r) throws IOException {
-        FileOutputStream fos = new FileOutputStream("reg.dat");
-        ObjectOutputStream salida = new ObjectOutputStream(fos);
-        salida.writeObject(r);
-        fos.close();
-        salida.close();
+    public void mostrarMapa2(int dni){
+        String mostrar = new String();
+        for (int i = H.numPisos-1; i >= 0; i--) {
+            for (int j = 0; j < H.numHab; ++j) {
+                if (H.habitaciones[i][j] != null) {
+                    if (H.habitaciones[i][j].getDni() == dni){
+                        mostrar = mostrar + " X ";
+                    }
+                    else {
+                        mostrar = mostrar + " R ";
+                    }
+                } else {
+                    mostrar = mostrar + " L ";
+                }
+            }
+            if (i == (H.numPisos-1)){
+                mostrar = mostrar+" --->Suites";
+            }
+            else if (i > 4 ){
+                mostrar = mostrar+" --->Balcones";
+            }
+            else {
+                mostrar = mostrar+" --->Estandar";
+            }
+            mostrar = mostrar + "\n";
+        }
+        taMapaHotel.setText(mostrar);
     }
-
 }
