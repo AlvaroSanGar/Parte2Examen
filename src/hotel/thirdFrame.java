@@ -58,6 +58,7 @@ public class thirdFrame extends JFrame{
                 }
                 else {
                     JOptionPane.showMessageDialog(null,"El tipo que ha escrito no existe, por favor asegurese de escribirlo como se muestra en el mapa.");
+                    return;
 
                 }
                 for (int i = 0;i < num;i++) {
