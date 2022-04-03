@@ -214,6 +214,9 @@ public class secondFrame extends JFrame {
                     JOptionPane.showMessageDialog(null,"Has pulsado tipo 'estándar'.");
                     tfEstandar.setText("1");
                 }
+                else {
+                    tfEstandar.setText("0");
+                }
             }
         });
         cbBalcon.addActionListener(new ActionListener() {
@@ -222,6 +225,9 @@ public class secondFrame extends JFrame {
                 if(cbBalcon.isSelected()){
                     JOptionPane.showMessageDialog(null,"Has pulsado 'balcón'.");
                     tfBalcon.setText("1");
+                }
+                else {
+                    tfBalcon.setText("0");
                 }
             }
         });
@@ -232,6 +238,9 @@ public class secondFrame extends JFrame {
                 if(cbSuite.isSelected()){
                     JOptionPane.showMessageDialog(null,"Has pulsado 'suite'.");
                     tfSuite.setText("1");
+                }
+                else {
+                    tfSuite.setText("0");
                 }
             }
         });
