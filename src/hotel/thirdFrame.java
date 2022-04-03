@@ -42,9 +42,24 @@ public class thirdFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 int [] aux1 ={-1,-1};
                 int cont1 = 0;
-                int tipo = Integer.parseInt(tfTipo.getText());
+                String Tipo = new String();
+                Tipo = tfTipo.getText();
+                int tipo = 0;
                 int DNI = Integer.parseInt(tfDNI.getText());
                 int num = Integer.parseInt(tfNum.getText());
+                if (Tipo.equals("Estandar") || Tipo.equals("estandar")){
+                    tipo = 1;
+                }
+                else if (Tipo.equals("Balcones") || Tipo.equals("balcones")){
+                    tipo = 2;
+                }
+                else if (Tipo.equals("Suites") || Tipo.equals("suites")){
+                    tipo = 3;
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,"El tipo que ha escrito no existe, por favor asegurese de escribirlo como se muestra en el mapa.");
+
+                }
                 for (int i = 0;i < num;i++) {
                     int [] aux2 = H.buscarReserva(DNI,tipo);
                     if (aux2[0] == aux1[0]) {
