@@ -127,16 +127,20 @@ public class secondFrame extends JFrame {
                 for (int i = 0;i < totalHabitaciones;i++) {
                     if (numEstandar > 0){
                         tipo = 1;
+                        numEstandar--;
                     }
                     else if (numBalcon > 0){
                         tipo = 2;
+                        numBalcon--;
                     }
                     else{
                         tipo = 3;
+                        numSuite--;
                     }
                     int coordenadas[] = H.encuentraHab(tipo);
                     if (coordenadas[0] == -1){
                         JOptionPane.showMessageDialog(null,"No hay suficientes habitaciones disponibles para realizar todas las reservas solicitadas.");
+                        return;
                     }
                     else {
                         String nombre = String.valueOf(tfNombre);

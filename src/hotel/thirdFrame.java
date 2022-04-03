@@ -52,6 +52,8 @@ public class thirdFrame extends JFrame{
                 }
                 mostrarMapa();
                 JOptionPane.showMessageDialog(null,"El proceso de anulación ha finalizado.");
+                tfTipo.setText("");
+                tfNum.setText("");
             }
         });
 
@@ -61,7 +63,7 @@ public class thirdFrame extends JFrame{
 
     public void mostrarMapa(){
         String mostrar = new String();
-        for (int i = 0; i < H.numPisos; ++i) {
+        for (int i = H.numPisos-1; i >= 0; i--) {
             for (int j = 0; j < H.numHab; ++j) {
                 if (H.habitaciones[i][j] == null) {
                     mostrar = mostrar + " L ";
@@ -69,7 +71,15 @@ public class thirdFrame extends JFrame{
                     mostrar = mostrar + " R ";
                 }
             }
-
+            if (i == (H.numPisos-1)){
+                mostrar = mostrar+" --->Suites";
+            }
+            else if (i > 4 ){
+                mostrar = mostrar+" --->Balcones";
+            }
+            else {
+                mostrar = mostrar+" --->Estandar";
+            }
             mostrar = mostrar + "\n";
         }
         taMapaHotel.setText(mostrar);
