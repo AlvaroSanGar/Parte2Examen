@@ -61,6 +61,7 @@ public class secondFrame extends JFrame {
     private int numSuite;
 
 
+    //////////////////CONSTRUCTOR SEGUNDO FRAME/////////////////////////////////////////////////////////////////////////
     public secondFrame(){
         setContentPane(Reservas);
         try {
@@ -73,6 +74,8 @@ public class secondFrame extends JFrame {
         setTitle("Reservas");
         setSize(900,400);
         setVisible(true);
+
+        //////////*BOTÓN CANCELAR*//////////////////////////////////////////////////////////////////////////////////////
         btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,6 +83,8 @@ public class secondFrame extends JFrame {
                 dispose();
             }
         });
+
+        ///////////////*BOTÓN LIMPIAR*//////////////////////////////////////////////////////////////////////////////////
         btnLimpiar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -103,7 +108,7 @@ public class secondFrame extends JFrame {
             }
         });
 
-
+        /////////////////////*BOTÓN CONFIRMAR*//////////////////////////////////////////////////////////////////////////
         btnConfirmar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -160,6 +165,7 @@ public class secondFrame extends JFrame {
                     }
                 }
                 JOptionPane.showMessageDialog(null,"Todas las reservas han sido realizadas con exito.");
+                /////////////LIMPIAR DE FORMA AUTOMÁTICA////////////////////////////////////////////////////////////////
                 tfNombre.setText("");
                 tfApellidos.setText("");
                 tfDireccion.setText("");
@@ -180,6 +186,8 @@ public class secondFrame extends JFrame {
 
             }
         });
+
+        /////////////////BOTÓN CALCULAR///////////////////////////////////////////////////////////////////////////////
         btnCalcular.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -207,6 +215,8 @@ public class secondFrame extends JFrame {
 
             }
         });
+
+        /////////////*CHECK BOX*///////////////////////////////////////////////////////////////////////////////////////
         cbEstandar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -231,7 +241,6 @@ public class secondFrame extends JFrame {
                 }
             }
         });
-
         cbSuite.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -244,6 +253,8 @@ public class secondFrame extends JFrame {
                 }
             }
         });
+
+        /////////////*COMBO BOX*////////////////////////////////////////////////////////////////////////////////////////
         comboBoxRegimen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -258,6 +269,8 @@ public class secondFrame extends JFrame {
                 }
             }
         });
+
+        //////////////BOTÓN GESTIONAR///////////////////////////////////////////////////////////////////////////////////
         gestionarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -280,10 +293,11 @@ public class secondFrame extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
-        secondFrame second = new secondFrame();
-    }
+    /////////*MAIN PARA EJECUTAR DIRECTAMENTE EL SECOND FRAME*//////////////////////////////////////////
+    public static void main(String[] args) {secondFrame A = new secondFrame();}
 
+
+    //////////*SERIALIZAR DATOS*////////////////////////////////////////////////////////////////////////////////////////
     public static void Serializar(Registro r) throws IOException{
         FileOutputStream fos = new FileOutputStream("reg.dat");
         ObjectOutputStream salida = new ObjectOutputStream(fos);

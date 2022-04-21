@@ -21,6 +21,8 @@ public class thirdFrame extends JFrame{
     private JButton btMostrar;
     protected Registro H;
 
+
+    /////////*CONSTRUCTOR TERCER FARME*//////////////////////////////////////////////////////////////////////////
     thirdFrame(){
         H = secondFrame.H;
         setContentPane(thirdPanel);
@@ -29,6 +31,7 @@ public class thirdFrame extends JFrame{
         this.mostrarMapa();
         setVisible(true);
 
+        //////////*BOTÓN CANCELAR*/////////////////////////////////////////////////////////////////////////////////
         btCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,6 +40,7 @@ public class thirdFrame extends JFrame{
             }
         });
 
+        ///////////////////*GESTIONAR EL BOTÓN "ANULAR"*//////////////////////////////////////////////
         btAnular.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,6 +124,7 @@ public class thirdFrame extends JFrame{
             }
         });
 
+        ///////////*BOTÓN MOSTRAR*////////////////////////////////////////////////////////////////////////////////
         btMostrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -133,8 +138,12 @@ public class thirdFrame extends JFrame{
         });
     }
 
+
+    /////////*MAIN PARA EJECUTAR DIRECTAMENTE EL THIRD FRAME*///////////////////////////////////////////////////
     public static void main(String[] args) {thirdFrame A = new thirdFrame();}
 
+
+    /////////*MUESTRA EL MAPA DEL HOTEL*/////////////////////////////////////////////////////////////////////////
     public void mostrarMapa(){
         String mostrar = new String();
         for (int i = H.numPisos-1; i >= 0; i--) {
@@ -159,6 +168,8 @@ public class thirdFrame extends JFrame{
         taMapaHotel.setText(mostrar);
     }
 
+
+    /////////*MUESTRA EL MAPA DEL HOTEL CON LAS RESERVAS DEL DNI MARCADAS CON "X"*///////////////////////////////////
     public void mostrarMapa2(int dni){
         String mostrar = new String();
         for (int i = H.numPisos-1; i >= 0; i--) {
