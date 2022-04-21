@@ -54,6 +54,7 @@ public class secondFrame extends JFrame {
     private JTextField tfFechaBaja;
     private JLabel lbFechaAlta;
     private JLabel lbFechaBaja;
+    private JButton btnAutoRellenar;
     protected static Registro H;
     private int tipo;
     private int numEstandar;
@@ -288,6 +289,26 @@ public class secondFrame extends JFrame {
                 else {
                     thirdFrame third = new thirdFrame();
                     dispose();
+                }
+            }
+        });
+
+
+        btnAutoRellenar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int dniDado = Integer.parseInt(tfDni.getText());
+                Cliente cBuscado = H.buscarPorDNI(dniDado);
+                if (cBuscado == null){
+                    JOptionPane.showMessageDialog(null,"El cliente que busca no existe");
+                }
+                else {
+                    tfNombre.setText(cBuscado.getNombre());
+                    tfApellidos.setText(cBuscado.getApellidos());
+                    tfTelefono.setText(String.valueOf(cBuscado.getTeléfono()));
+                    tfTarjeta.setText(String.valueOf(cBuscado.getNumTarjeta()));
+                    tfFechaAlta.setText(cBuscado.getAlta());
+                    tfFechaBaja.setText(cBuscado.getBaja());
                 }
             }
         });
